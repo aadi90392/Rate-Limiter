@@ -11,7 +11,7 @@ const MAX_IP = 20;
 
 const rateLimiter = (req,res,next)=>{
     const userId = req.headers['userid'];
-    const ip = req.headers[' x-forwarded-for'] || req.socket.remoteAdress || req.ip;
+    const ip = req.headers['x-forwarded-for'] || req.socket.remoteAddress || req.ip;
     const now = Date.now();
 
     if(!userId){
@@ -48,8 +48,8 @@ const rateLimiter = (req,res,next)=>{
 
     app.get('/data',rateLimiter, (req,res)=>{
         res.status(200).json({
-            sucess: true,
-            message: "request Sucessfull",
+            success: true,
+            message: "request Successful",
             timestamps: new Date().toISOString()
         });
     });
